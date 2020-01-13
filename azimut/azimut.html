@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<!--
+    Typify by TEMPLATED
+    templated.co @templatedco
+    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+<head>
+    <title>Azimut Distancia</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="../assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]-->
+    <!-- Scripts -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/skel.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <!--[if lte IE 8]><script src="../assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/bridge.js"></script>
+</head>
+<body>
+
+		<!-- Two -->
+			<section id="calculoAzimut" class="wrapper style2 special">
+				<div class=" inner narrow">
+					<header>
+						<h3>Azimut Distancia</h3>
+					</header>
+					<form class="grid-form" method="post" action="#">
+						<div class="form-control narrow">
+							<label for="n1">N1</label>
+							<input name="n1" id="n1" type="number" class="numerico">
+						</div>
+                        <div class="form-control narrow">
+                            <label for="e1">E1</label>
+                            <input name="e1" id="e1" type="number" class="numerico">
+                        </div>
+						<div class="form-control narrow">
+							<label for="n1">N2</label>
+							<input name="n2" id="n2" type="number" class="numerico">
+						</div>
+                        <div class="form-control narrow">
+                            <label for="e2">E2</label>
+                            <input type="number" id="e2" name="e2" class="numerico"/>
+                        </div>
+						<ul class="actions">
+							<li><a href="javascript:void(0);" class="button special icon fa-cogs" onclick="calculoAzimut(); return false;">Calcular</a></li>
+							<!--<li><input value="Send Message" type="submit" onClick="calculo();"></li>-->
+						</ul>
+					</form>
+				</div>
+			</section>
+
+            <section id="resultadoAzimut" class="wrapper style2" >
+                <div class="inner narrow">
+                    <div class="table-wrapper">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="negrita">Az.P1-P2</td>
+                                    <td id="resultadoAzP1P2" class="numerico"></td>
+                                </tr>
+                                <tr>
+                                    <td class="negrita">Distancia</td>
+                                    <td id="resultadoDistancia" class="numerico"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="align-right">
+                            <a href="#javascript:void(0);" class="icon  fa fa-arrow-circle-up icono-2 " onclick="scrollA('calculoAzimut');"></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+	</body>
+</html>

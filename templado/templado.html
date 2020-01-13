@@ -1,0 +1,221 @@
+<!DOCTYPE HTML>
+<!--
+    Typify by TEMPLATED
+    templated.co @templatedco
+    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+<head>
+    <title>Templado</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="../assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]-->
+    <!-- Scripts -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/skel.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <!--[if lte IE 8]><script src="../assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/bridge.js"></script>
+</head>
+<body>
+
+		<!-- Two -->
+			<section id="calculoTemplado" class="wrapper style2 special">
+				<div class=" inner narrow">
+					<header>
+						<h3>Templado</h3>
+					</header>
+					<form class="grid-form" method="post" action="#">
+						<div class="form-control narrow">
+							<label for="cest">Cota Est</label>
+							<input name="cest" id="cest" type="number" class="numerico">
+						</div>
+                        <div class="form-control narrow">
+                            <label for="ap1">Alt. Prisma 1</label>
+                            <input name="ap1" id="ap1" type="number" class="numerico">
+                        </div>
+                        <div class="form-control narrow">
+                            <label for="ap2">Alt. Prisma 2</label>
+                            <input id="ap2" name="ap2" type="number" class="numerico"/>
+                        </div>
+                        <div class="form-control narrow">
+                            <label for="act1">Az. Calaje T1</label>
+                            <input id="act1" name="act1" type="number" class="numerico"/>
+                        </div>
+						<div class="form-control narrow">
+							<label for="dht1">Dist. Hz. T1</label>
+							<input name="dht1" id="dht1" type="number" class="numerico">
+						</div>
+                        <div class="form-control narrow">
+                            <label for="avt1">Ang. Ver. T1</label>
+                            <input type="number" id="avt1" name="avt1" class="numerico"/>
+                        </div>
+                        <div class="form-control narrow">
+                            <label for="aht2">Ang. Horz. T2</label>
+                            <input id="aht2" name="aht2" type="number" class="numerico"/>
+                        </div>
+                        <div class="form-control narrow">
+                            <label for="dht2">DHT2</label>
+                            <input id="dht2" name="dht2" type="number" class="numerico"/>
+                        </div>
+                        <div class="form-control narrow">
+                            <label for="avt2">Ang. vert. T2</label>
+                            <input id="avt2" name="avt2" type="number" class="numerico"/>
+                        </div>
+                        <div class="form-control narrow">
+                            <label for="vt">Vano Tabla</label>
+                            <input id="vt" name="vt" type="number" class="numerico"/>
+                        </div>
+						<ul class="actions">
+							<li><a href="javascript:void(0);" class="button special icon fa-cogs" onclick="calculoTemplado(); return false;">Calcular</a></li>
+							<!--<li><input value="Send Message" type="submit" onClick="calculo();"></li>-->
+						</ul>
+					</form>
+				</div>
+			</section>
+
+            <section id="resultadoTemplado" class="wrapper style2 hide">
+                <div class="inner narrow">
+                    <div class="table-wrapper">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="negrita">Gama</td>
+                                    <td id="gama" class="numerico"></td>
+                                </tr>
+                                <tr>
+                                    <td class="negrita">Vano</td>
+                                    <td id="vano" class="numerico"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <input type="hidden" id="vm" name="vm"/>
+                    <input type="hidden" id="ctgf" name="ctgf" />
+                </div>
+            </section>
+
+            <section id="temperaturaTemplado" class="wrapper style2 special hide">
+                <div class="inner narrow">
+                    <form class="grid-form" method="post" action="#">
+                        <div class="form-control narrow">
+                            <label for="temperaturaInicio">Temperatura Inicio</label>
+                            <input id="temperaturaInicio" name="temperaturaInicio" type="number" class="numerico"/>
+                        </div>
+                        <div class="form-control narrow">
+                            <label for="temperaturaTermino">Temperatura Termino</label>
+                            <input id="temperaturaTermino" name="temperaturaTermino" type="number" class="numerico"/>
+                        </div>
+                        <div class="form-control narrow">
+                            <label for="flechaInicio">Flecha Inicio</label>
+                            <input id="flechaInicio" name="flechaInicio" type="number" class="numerico"/>
+                        </div>
+                        <div class="form-control narrow">
+                            <label for="flechaTermino">Flecha Termino</label>
+                            <input id="flechaTermino" name="flechaTermino" type="number" class="numerico"/>
+                        </div>
+                        <div class="form-control narrow">
+                            <label for="temperaturaReal">Temperatura Real</label>
+                            <input id="temperaturaReal" name="temperaturaReal" type="number" class="numerico"/>
+                        </div>
+                        <div class="form-control narrow">
+                            <label for="creep">Creep</label>
+                            <input id="creep" name="creep" type="number" class="numerico"/>
+                        </div>
+                        <ul class="actions">
+                            <li><a href="javascript:void(0);" class="button special icon fa-chevron-right" onclick="continuarTemplado(); return false;">Continuar</a></li>
+                        </ul>
+                    </form>
+                </div>
+            </section>
+
+            <section id="resultadoTemperaturaTrabajo" class="wrapper style2 hide">
+                <div class="inner narrow">
+                    <div class="table-wrapper">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="negrita">Temperatura Trabajo</td>
+                                    <td id="resultadoTemperatura" class="numerico"></td>
+                                </tr>
+                                <tr>
+                                    <td class="negrita">Az. Catenaria</td>
+                                    <td id="resultadoCatenaria" class="numerico"></td>
+                                </tr>
+                                <tr>
+                                    <td class="negrita">Flecha Corregida</td>
+                                    <td id="resultadoFlecha" class="numerico"></td>
+                                </tr>
+                                <tr>
+                                    <td class="negrita">Ang. Vert. Corregido</td>
+                                    <td id="resultadoAngulo" class="numerico"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <input type="hidden" id="dh2f" name="dh2f" />
+                    </div>
+                </div>
+            </section>
+
+        <section id="corrigeTemplado" class="wrapper style2 special hide">
+            <div class="inner narrow">
+                <form class="grid-form" method="post" action="#">
+                    <div class="form-control" id="corrige_titulo">
+                        <header>
+                            <h4>¿Corrige?</h4>
+                        </header>
+                    </div>
+                    <ul class="actions" id="corrige_botones">
+                        <li><a href="javascript:void(0);" class="button special icon fa-check" onclick="siCorrigeTemplado(); return false;">Si</a></li>
+                        <li><a href="javascript:void(0);" class="button special icon fa-remove" onclick="noCorrige(); return false;">No</a></li>
+                    </ul>
+                    <div class="form-control narrow hide" id="corrige_angr">
+                        <label for="angr">Angr</label>
+                        <input id="angr" name="angr" type="number" class="numerico"/>
+                    </div>
+                    <ul class="actions hide" id="corregir_accion">
+                        <li><a href="javascript:void(0);" class="button special icon fa-pencil" onclick="corregirTemplado(); return false;">Corregir</a></li>
+                    </ul>
+                </form>
+            </div>
+        </section>
+
+        <section id="resultadoCorreccionTemplado" class="wrapper hide">
+                <div class="inner narrow">
+                    <div class="table-wrapper">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="negrita">Correcci&oacute;n</td>
+                                    <td id="resultadoCorreccion" class="numerico"></td>
+                                </tr>
+                                <tr>
+                                    <td class="negrita">Tanto % final</td>
+                                    <td id="resultadoPorcentaje" class="numerico"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+        </section>
+
+        <section id="cambioTemperatura" class="wrapper special hide">
+            <div class="inner narrow">
+                <form class="grid-form" method="post" action="#">
+                    <div class="form-control" id="emperatura_titulo">
+                        <header>
+                            <h4>¿Cambio de Temperatura?</h4>
+                        </header>
+                    </div>
+                    <ul class="actions" id="temperatura_botones">
+                        <li><a href="javascript:void(0);" class="button special icon fa-check" onclick="siCambioTemperatura(); return false;">Si</a></li>
+                        <li><a href="javascript:void(0);" class="button special icon fa-remove" onclick="noCambioTemperatura(); return false;">No</a></li>
+                    </ul>
+                </form>
+            </div>
+        </section>
+	</body>
+</html>

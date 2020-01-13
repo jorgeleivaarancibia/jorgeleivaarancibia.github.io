@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<!--
+    Typify by TEMPLATED
+    templated.co @templatedco
+    Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+<head>
+    <title>Coordena de un Punto</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="../assets/js/ie/html5shiv.js"></script><![endif]-->
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <!--[if lte IE 9]><link rel="stylesheet" href="../assets/css/ie9.css" /><![endif]-->
+    <!-- Scripts -->
+    <script src="../assets/js/jquery.min.js"></script>
+    <script src="../assets/js/skel.min.js"></script>
+    <script src="../assets/js/util.js"></script>
+    <!--[if lte IE 8]><script src="../assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/bridge.js"></script>
+</head>
+<body>
+
+		<!-- Two -->
+			<section id="calculoCoordenada" class="wrapper style2 special">
+				<div class=" inner narrow">
+					<header>
+						<h3>Coordenada de un Punto</h3>
+					</header>
+					<form class="grid-form" method="post" action="#">
+                        <div class="form-control align-left ">
+                            <input type="checkbox" id="ccota" name="ccota"  onclick="desplegarCalculoCota();"/>
+                            <label for="ccota">Calcula Cotas</label>
+                        </div>
+						<div class="form-control narrow">
+							<label for="nest">N. Est</label>
+							<input name="nest" id="nest" type="number" class="numerico">
+						</div>
+                        <div class="form-control narrow">
+                            <label for="eest">E. Est</label>
+                            <input name="eest" id="eest" type="number" class="numerico">
+                        </div>
+                        <div id="div_cest" class="form-control narrow hide">
+                            <label for="cest">Cota Est</label>
+                            <input id="cest" name="cest" type="number" class="numerico" />
+                        </div>
+                        <div id="div_hi" class="form-control narrow hide">
+                            <label for="hi">HI</label>
+                            <input id="hi" name="hi" type="number" class="numerico" />
+                        </div>
+						<div class="form-control narrow">
+							<label for="az">AZ</label>
+							<input name="az" id="az" type="number" class="numerico">
+						</div>
+                        <div class="form-control narrow">
+                            <label for="vz">VZ</label>
+                            <input type="number" id="vz" name="vz" class="numerico"/>
+                        </div>
+                        <div class="form-control narrow">
+                            <label for="di">DI</label>
+                            <input id="di" name="di" type="number" class="numerico"/>
+                        </div>
+                        <div id="div_hj" class="form-control narrow hide">
+                            <label for="hj">HJ</label>
+                            <input id="hj" name="hj" type="number" class="numerico"/>
+                        </div>
+						<ul class="actions">
+							<li><a href="javascript:void(0);" class="button special icon fa-cogs" onclick="calculoCoordenada(); return false;">Calcular</a></li>
+							<!--<li><input value="Send Message" type="submit" onClick="calculo();"></li>-->
+						</ul>
+					</form>
+				</div>
+			</section>
+
+            <section id="resultadoCoordenada" class="wrapper style2" >
+                <div class="inner narrow">
+                    <div class="table-wrapper">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td class="negrita">N</td>
+                                    <td id="resultadoN" class="numerico"></td>
+                                </tr>
+                                <tr>
+                                    <td class="negrita">E</td>
+                                    <td id="resultadoE" class="numerico"></td>
+                                </tr>
+                                <tr id="tr_cota" class="hide">
+                                    <td class="negrita">Cota</td>
+                                    <td id="resultadoCota" class="numerico"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+	</body>
+</html>
