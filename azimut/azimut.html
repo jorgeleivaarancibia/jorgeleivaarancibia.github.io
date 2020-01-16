@@ -21,12 +21,53 @@
     <script src="../assets/js/bridge.js"></script>
 </head>
 <body>
-
+    <div class="menu-wrap">
+        <input type="checkbox" class="toggler">
+        <div class="hamburger"><div></div></div>
+        <div class="menu">
+          <div>
+            <div>
+              <ul>
+                <li><a href="azimut.html">
+                    <i class="fas fa-map-marker-alt"></i>
+                    Azimut Distancia
+                </a>
+                </li>
+                <li>
+                    <a href="../coordenada/coordenadaPunto.html">
+                        <i class="fas fa-map-marked-alt"></i>
+                        Coordenada de un punto
+                    </a>
+                </li>
+                <li>
+                    <a href="../recta/interseccionRectas.html">
+                        <i class="fas fa-chart-line"></i>
+                        Intersecci&oacute;n de Rectas
+                    </a>
+                </li>
+                <li>
+                    <a href="../templado/templado.html">
+                        <i class="fas fa-layer-group"></i>
+                        Templado
+                    </a>
+                </li>
+                <li>
+                    <a href="../tunel/tunel.html">
+                        <i class="fas fa-code-branch"></i>
+                        Tunel Intel Cloto
+                    </a>
+                </li>
+                <li><a href="../index.html">Men&uacute;</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
 		<!-- Two -->
 			<section id="calculoAzimut" class="wrapper style2 special">
 				<div class=" inner narrow">
 					<header>
-						<h3>Azimut Distancia</h3>
+						<h3><i class="fas fa-map-marker-alt"></i> Azimut Distancia</h3>
 					</header>
 					<form class="grid-form" method="post" action="#">
 						<div class="form-control narrow">
@@ -46,7 +87,7 @@
                             <input type="number" id="e2" name="e2" class="numerico"/>
                         </div>
 						<ul class="actions">
-							<li><a href="javascript:void(0);" class="button special icon fa-cogs" onclick="calculoAzimut(); return false;">Calcular</a></li>
+							<li><a href="javascript:void(0);" class="button special icon" onclick="calculoAzimut(); return false;"><i class="fas fa-cogs"></i>Calcular</a></li>
 							<!--<li><input value="Send Message" type="submit" onClick="calculo();"></li>-->
 						</ul>
 					</form>
@@ -69,10 +110,13 @@
                             </tbody>
                         </table>
                         <div class="align-right">
-                            <a href="#javascript:void(0);" class="icon  fa fa-arrow-circle-up icono-2 " onclick="scrollA('calculoAzimut');"></a>
+                            <a href="javascript:void(0);" class="icon" onclick="scrollA('calculoAzimut');">
+                                <i class="fas fa-arrow-alt-circle-up fa-2x"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
             </section>
+        <input type="hidden" id="idFuncion" value="1" />
 	</body>
 </html>

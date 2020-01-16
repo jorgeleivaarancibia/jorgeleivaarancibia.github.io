@@ -1,3 +1,13 @@
+var ID_AZIMUT = 1;
+var ID_COORDENADA = 2;
+var ID_RECTA = 3;
+var ID_TEMPLADO = 4;
+var ID_TUNEL = 5;
+
+$(document).ready(function() {
+    obtenerSesion();
+});
+
 var parametrosAzimut = {
     N1: 0,
     E1: 0,
@@ -116,6 +126,7 @@ function calculoAzimut() {
         resultadoAzimut();
         $("#resultadoAzP1P2").text(parametrosAzimut.azimut);
         $("#resultadoDistancia").text(parametrosAzimut.distancia);
+        guardarSesion();
         scrollA('resultadoAzimut');
     } else {
         return false;
@@ -139,18 +150,19 @@ function calculoRecta() {
         var respuesta = Android.calculoRecta(objeto);
         var json = JSON.parse(respuesta);
         var mensaje = json.mensaje;*/
-        parametrosInterseccionRecta.n1 = n1;
-        parametrosInterseccionRecta.e1 = e1;
-        parametrosInterseccionRecta.az1 = az1;
-        parametrosInterseccionRecta.n2 = n2;
-        parametrosInterseccionRecta.e2 = e2;
-        parametrosInterseccionRecta.az2 = az2;
+        parametrosInterseccionRecta.n1 = Number(n1);
+        parametrosInterseccionRecta.e1 = Number(e1);
+        parametrosInterseccionRecta.az1 = Number(az1);
+        parametrosInterseccionRecta.n2 = Number(n2);
+        parametrosInterseccionRecta.e2 = Number(e2);
+        parametrosInterseccionRecta.az2 = Number(az2);
         parametrosInterseccionRecta.mensaje = '';
         resultadoInterseccionDeRecta();
         if (parametrosInterseccionRecta.mensaje != '') {
             $("#resultadoNo").removeClass("hide");
             $("#resultadoInterseccionRecta").addClass("hide");
             $("#resultadoMensaje").text(parametrosInterseccionRecta.mensaje);
+            scrollA('resultadoNo');
         } else {
             $("#resultadoInterseccionRecta").removeClass("hide");
             $("#resultadoNo").addClass("hide");
@@ -162,7 +174,9 @@ function calculoRecta() {
             $("#resultadoE").text(e);
             $("#resultadoD1").text(dhp1);
             $("#resultadoD2").text(dhp2);
+            scrollA('resultadoInterseccionRecta');
         }
+        guardarSesion();
     } else {
         return false;
     }
@@ -186,9 +200,9 @@ function calculoCoordenada() {
     var az = $("#az").val();
     var vz = $("#vz").val();
     var di = $("#di").val();
-    var cest;
-    var hi;
-    var hj;
+    var cest = 0;
+    var hi = 0;
+    var hj = 0;
     var objeto;
 
     if ($("#ccota").is(":checked")) {
@@ -223,14 +237,14 @@ function calculoCoordenada() {
         objeto += ', "ccota": false';
     }
     objeto += '}';*/
-    parametrosCoordenadaPunto.nest = nest;
-    parametrosCoordenadaPunto.eest = eest;
-    parametrosCoordenadaPunto.az = az;
-    parametrosCoordenadaPunto.vz = vz;
-    parametrosCoordenadaPunto.di = di;
-    parametrosCoordenadaPunto.cc = cest;
-    parametrosCoordenadaPunto.hi = hi;
-    parametrosCoordenadaPunto.hj = hj;
+    parametrosCoordenadaPunto.nn = Number(nest);
+    parametrosCoordenadaPunto.ee = Number(eest);
+    parametrosCoordenadaPunto.az = Number(az);
+    parametrosCoordenadaPunto.vz = Number(vz);
+    parametrosCoordenadaPunto.di = Number(di);
+    parametrosCoordenadaPunto.cc = Number(cest);
+    parametrosCoordenadaPunto.hi = Number(hi);
+    parametrosCoordenadaPunto.hj = Number(hj);
 
     resultadoCoordenadaPunto();
 
@@ -246,9 +260,13 @@ function calculoCoordenada() {
         var resultadoCota = parametrosCoordenadaPunto.c;
         $("#resultadoCota").text(resultadoCota);
         $("#tr_cota").removeClass("hide");
+        parametrosCoordenadaPunto.cota = true;
     } else {
         $("#tr_cota").addClass("hide");
+        parametrosCoordenadaPunto.cota = false;
     }
+    scrollA('resultadoCoordenada');
+    guardarSesion();
 }
 
 function calculoTemplado() {
@@ -458,12 +476,12 @@ function calculoTunel() {
         var respuesta = Android.calculoTunel(objeto);
         var json = JSON.parse(respuesta);*/
 
-        parametrosTunelInterCloto.n1 = n1;
-        parametrosTunelInterCloto.e1 = e1;
-        parametrosTunelInterCloto.az1 = az1;
-        parametrosTunelInterCloto.k1 = k1;
-        parametrosTunelInterCloto.n = n;
-        parametrosTunelInterCloto.e = e;
+        parametrosTunelInterCloto.n1 = Number(n1);
+        parametrosTunelInterCloto.e1 = Number(e1);
+        parametrosTunelInterCloto.az1 = Number(az1);
+        parametrosTunelInterCloto.k1 = Number(k1);
+        parametrosTunelInterCloto.n = Number(n);
+        parametrosTunelInterCloto.e = Number(e);
 
 
         resultadoTunelInterCloto();
@@ -473,6 +491,7 @@ function calculoTunel() {
 
         $("#resultadoKM").text(k);
         $("#resultadoDist").text(d);
+        guardarSesion();
     }
 }
 
@@ -544,9 +563,9 @@ function resultadoInterseccionDeRecta() {
     }
 
     if (az2 === 0 || az2 === 200) {
-        a2 = 1E+09;
+        a2 = 1e+09;
     } else if (az2 === 100 || az2 === 300) {
-        a2 = 1E-09;
+        a2 = 1e-09;
     } else {
         var az2Radian = convertirCentesimalASexagesimalRadian(az2);
         a2 = 1/Math.tan(az2Radian);
@@ -560,7 +579,7 @@ function resultadoInterseccionDeRecta() {
         e = (n2 - n1 + a1 * e1 - a2 * e2)/aa;
         n = (n1 + (e - e1) * a1);
         d1 = Math.sqrt(Math.pow((n1 - n), 2) + Math.pow((e1 - e), 2));
-        d2 = Math.sqrt(Math.pow((n2 - n), 2) + Math.pow((e2 - n), 2));
+        d2 = Math.sqrt(Math.pow((n2 - n), 2) + Math.pow((e2 - e), 2));
         parametrosInterseccionRecta.este = (round(e, 4));
         parametrosInterseccionRecta.norte = (round(n, 4));
         parametrosInterseccionRecta.diferenciaPunto1 = (round(d1, 4));
@@ -707,4 +726,122 @@ function scrollA(idElemento) {
     $('html, body').animate({
         scrollTop: ($('#' + idElemento).offset().top)
     },500);
+}
+
+function guardarSesion() {
+
+    var idFuncion = Number($("#idFuncion").val());
+    switch (idFuncion) {
+        case ID_AZIMUT:
+            localStorage.setItem('p7.azimut', JSON.stringify(parametrosAzimut));
+            break;
+        case ID_COORDENADA:
+            localStorage.setItem('p7.coordenada', JSON.stringify(parametrosCoordenadaPunto));
+            break;
+        case ID_RECTA:
+            localStorage.setItem('p7.recta', JSON.stringify(parametrosInterseccionRecta));
+            break;
+        case ID_TEMPLADO:
+            localStorage.setItem('p7.templado', JSON.stringify(parametrosTemplado));
+            break;
+        case ID_TUNEL:
+            localStorage.setItem('p7.tunel', JSON.stringify(parametrosTunelInterCloto));
+            break;
+    }
+
+}
+
+function obtenerSesion() {
+    var idFuncion = Number($("#idFuncion").val());
+    var objetoSesion;
+    switch (idFuncion) {
+        case ID_AZIMUT:
+                objetoSesion = localStorage.getItem('p7.azimut');
+            if (objetoSesion != undefined && objetoSesion !== '') {
+                parametrosAzimut = JSON.parse(objetoSesion);
+                setFormularioAzimut();
+            }
+            break;
+        case ID_COORDENADA:
+            objetoSesion = localStorage.getItem('p7.coordenada');
+            if (objetoSesion != undefined && objetoSesion !== '') {
+                parametrosCoordenadaPunto = JSON.parse(objetoSesion);
+                setFormularioCoordenadaPunto();
+            }
+            break;
+        case ID_RECTA:
+            objetoSesion = localStorage.getItem('p7.recta');
+            if (objetoSesion != undefined && objetoSesion !== '') {
+                parametrosInterseccionRecta = JSON.parse(objetoSesion);
+                setFormularioRecta();
+            }
+            break;
+        case ID_TEMPLADO:
+            parametrosTemplado = JSON.parse(localStorage.setItem('p7.templado'));
+            break;
+        case ID_TUNEL:
+            objetoSesion = localStorage.getItem('p7.tunel');
+            if (objetoSesion != undefined && objetoSesion !== '') {
+                parametrosTunelInterCloto = JSON.parse(objetoSesion);
+                setFormularioTunel();
+            }
+            break;
+    }
+}
+
+function setFormularioAzimut() {
+    $("#n1").val(parametrosAzimut.N1);
+    $("#e1").val(parametrosAzimut.E1);
+    $("#n2").val(parametrosAzimut.N2);
+    $("#e2").val(parametrosAzimut.E2);
+    $("#resultadoAzP1P2").text(parametrosAzimut.azimut);
+    $("#resultadoDistancia").text(parametrosAzimut.distancia);
+}
+
+function setFormularioCoordenadaPunto() {
+    $("#nest").val(parametrosCoordenadaPunto.nn);
+    $("#eest").val(parametrosCoordenadaPunto.ee);
+    $("#az").val(parametrosCoordenadaPunto.az);
+    $("#vz").val(parametrosCoordenadaPunto.vz);
+    $("#di").val(parametrosCoordenadaPunto.di);
+    $("#resultadoN").text(parametrosCoordenadaPunto.n);
+    $("#resultadoE").text(parametrosCoordenadaPunto.e);
+    if (parametrosCoordenadaPunto.cota != undefined && parametrosCoordenadaPunto.cota) {
+        $("#ccota").prop("checked", true);
+        desplegarCalculoCota();
+        $("#cest").val(parametrosCoordenadaPunto.cc);
+        $("#hi").val(parametrosCoordenadaPunto.hi);
+        $("#hj").val(parametrosCoordenadaPunto.hj);
+        $("#resultadoCota").text(parametrosCoordenadaPunto.c);
+        $("#tr_cota").removeClass("hide");
+    } else {
+        $("#tr_cota").addClass("hide");
+    }
+
+}
+
+function setFormularioRecta() {
+    $("#n1").val(parametrosInterseccionRecta.n1);
+    $("#e1").val(parametrosInterseccionRecta.e1);
+    $("#az1").val(parametrosInterseccionRecta.az1);
+    $("#n2").val(parametrosInterseccionRecta.n2);
+    $("#e2").val(parametrosInterseccionRecta.e2);
+    $("#az2").val(parametrosInterseccionRecta.az2);
+    $("#resultadoN").text(parametrosInterseccionRecta.norte);
+    $("#resultadoE").text(parametrosInterseccionRecta.este);
+    $("#resultadoD1").text(parametrosInterseccionRecta.diferenciaPunto1);
+    $("#resultadoD2").text(parametrosInterseccionRecta.difirenciaPunto2);
+    $("#resultadoMensaje").text(parametrosInterseccionRecta.mensaje);
+}
+
+function setFormularioTunel() {
+    $("#n1").val(parametrosTunelInterCloto.n1);
+    $("#e1").val(parametrosTunelInterCloto.e1);
+    $("#az1").val(parametrosTunelInterCloto.az1);
+    $("#k1").val(parametrosTunelInterCloto.k1);
+    $("#n").val(parametrosTunelInterCloto.n);
+    $("#e").val(parametrosTunelInterCloto.e);
+    $("#resultadoKM").text(parametrosTunelInterCloto.k);
+    $("#resultadoDist").text(parametrosTunelInterCloto.d);
+
 }
