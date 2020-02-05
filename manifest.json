@@ -5,5 +5,23 @@
     "display": "standalone",
     "background_color": "#fdfdfd",
     "theme_color": "#db4938",
-    "orientation": "portrait-primary"
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+          "src": "/assets/img/icono_48.png",
+          "type": "image/png", "sizes": "48x48"
+        },
+        {
+          "src": "/assets/img/icono_72.png",
+          "type": "image/png", "sizes": "72x72"
+        },
+        {
+          "src": "/assets/img/icono_96.png",
+          "type": "image/png", "sizes": "96x96"
+        },
+        {
+          "src": "/assets/img/icono_144.png",
+          "type": "image/png", "sizes": "144x144"
+        }
+      ]
   }
