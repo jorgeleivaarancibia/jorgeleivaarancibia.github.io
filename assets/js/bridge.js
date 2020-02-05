@@ -5,6 +5,14 @@ var ID_TEMPLADO = 4;
 var ID_TUNEL = 5;
 
 $(document).ready(function() {
+    if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function() {
+          navigator.serviceWorker
+            .register("/serviceWorker.js")
+            .then(res => console.log("service worker registered"))
+            .catch(err => console.log("service worker not registered", err))
+        })
+      }
     obtenerSesion();
 });
 
@@ -777,7 +785,11 @@ function obtenerSesion() {
             }
             break;
         case ID_TEMPLADO:
-            parametrosTemplado = JSON.parse(localStorage.setItem('p7.templado'));
+            objetoSesion = localStorage.setItem('p7.templado');
+            if (objetoSesion != undefined && objetoSesion !== '') {
+                parametrosTemplado = JSON.parse(objetoSesion);
+                setFormularioTemplado();
+            }
             break;
         case ID_TUNEL:
             objetoSesion = localStorage.getItem('p7.tunel');
@@ -843,5 +855,9 @@ function setFormularioTunel() {
     $("#e").val(parametrosTunelInterCloto.e);
     $("#resultadoKM").text(parametrosTunelInterCloto.k);
     $("#resultadoDist").text(parametrosTunelInterCloto.d);
+
+}
+
+function setFormularioTemplado() {
 
 }
