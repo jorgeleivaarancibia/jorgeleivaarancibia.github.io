@@ -786,7 +786,7 @@ function obtenerSesion() {
             }
             break;
         case ID_TEMPLADO:
-            objetoSesion = localStorage.setItem('p7.templado');
+            objetoSesion = localStorage.getItem('p7.templado');
             if (objetoSesion != undefined && objetoSesion !== '') {
                 parametrosTemplado = JSON.parse(objetoSesion);
                 setFormularioTemplado();
