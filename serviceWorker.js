@@ -9,7 +9,6 @@ const assets = [
     "/assets/js/main.js",
     "/assets/js/jquery.min.js",
     "/assets/js/util.js",
-    "/assets/js/skel.min.js",
     "/assets/js/skel.min.js"
 ];
 
