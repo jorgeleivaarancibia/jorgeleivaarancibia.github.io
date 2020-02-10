@@ -1,4 +1,4 @@
-const staticP7 = "P7-V1"
+const staticP7 = "P7-V1";
 const assets = [
     "/",
     "/index.html",
@@ -11,7 +11,7 @@ const assets = [
     "/assets/js/util.js",
     "/assets/js/skel.min.js",
     "/assets/js/skel.min.js"
-]
+];
 
 self.addEventListener("install", installEvent => {
     installEvent.waitUntil(
@@ -19,7 +19,7 @@ self.addEventListener("install", installEvent => {
         cache.addAll(assets)
       })
     )
-  })
+  });
 
   self.addEventListener("fetch", fetchEvent => {
     fetchEvent.respondWith(
@@ -27,4 +27,4 @@ self.addEventListener("install", installEvent => {
         return res || fetch(fetchEvent.request)
       })
     )
-  })
+  });
