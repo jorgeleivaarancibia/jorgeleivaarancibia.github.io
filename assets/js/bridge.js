@@ -128,10 +128,10 @@ function calculoAzimut() {
         var json = JSON.parse(respuesta);
         var resultadoP1 = json.p1;
         var resultadoDistancia = json.distancia;*/
-        parametrosAzimut.N1 = n1;
-        parametrosAzimut.E1 = e1;
-        parametrosAzimut.N2 = n2;
-        parametrosAzimut.E2 = e2;
+        parametrosAzimut.N1 = Number(n1);
+        parametrosAzimut.E1 = Number(e1);
+        parametrosAzimut.N2 = Number(n2);
+        parametrosAzimut.E2 = Number(e2);
         resultadoAzimut();
         $("#resultadoAzP1P2").text(parametrosAzimut.azimut);
         $("#resultadoDistancia").text(parametrosAzimut.distancia);
@@ -304,15 +304,16 @@ function calculoTemplado() {
             + ', "aht2":' + aht2 + ', "dht2":' + dht2 + ', "avt2":' + avt2 + ', "vt":' + vt + '}';
         var respuesta = Android.calculoTemplado(objeto);
         var json = JSON.parse(respuesta);*/
-        parametrosTemplado.ce = cest;
-        parametrosTemplado.hp1 = ap1;
-        parametrosTemplado.hp2 = ap2;
-        parametrosTemplado.aht1 = act1;
-        parametrosTemplado.dht1 = dht1;
-        parametrosTemplado.avt1 = avt1;
-        parametrosTemplado.aht2 = aht2;
-        parametrosTemplado.avt2 = avt2;
-        parametrosTemplado.vt = vt;
+        parametrosTemplado.ce = Number(cest);
+        parametrosTemplado.hp1 = Number(ap1);
+        parametrosTemplado.hp2 = Number(ap2);
+        parametrosTemplado.aht1 = Number(act1);
+        parametrosTemplado.dht1 = Number(dht1);
+        parametrosTemplado.avt1 = Number(avt1);
+        parametrosTemplado.aht2 = Number(aht2);
+        parametrosTemplado.dht2 = Number(dht2);
+        parametrosTemplado.avt2 = Number(avt2);
+        parametrosTemplado.vt = Number(vt);
 
         resultadoGamaTemplado();
 
@@ -330,6 +331,7 @@ function calculoTemplado() {
         $("#temperaturaTemplado").removeClass("hide");
 
         scrollA('resultadoTemplado');
+        guardarSesion();
     }
 }
 
@@ -363,12 +365,12 @@ function continuarTemplado() {
         var respuesta = Android.continuarTemplado(objeto);
         var json = JSON.parse(respuesta);*/
 
-        parametrosTemplado.aw = aw;
-        parametrosTemplado.ax = ax;
-        parametrosTemplado.bc = bc;
-        parametrosTemplado.bd = bd;
-        parametrosTemplado.ba = ba;
-        parametrosTemplado.crp = crp;
+        parametrosTemplado.aw = Number(aw);
+        parametrosTemplado.ax = Number(ax);
+        parametrosTemplado.bc = Number(bc);
+        parametrosTemplado.bd = Number(bd);
+        parametrosTemplado.ba = Number(ba);
+        parametrosTemplado.crp = Number(crp);
 
         resultadoTempladoCorregido();
 
@@ -394,6 +396,7 @@ function continuarTemplado() {
         $("#resultadoTemperaturaTrabajo").removeClass("hide");
 
         scrollA('corrigeTemplado');
+        guardarSesion();
 
     }
 }
@@ -440,10 +443,10 @@ function corregirTemplado() {
         var respuesta = Android.corregirTemplado(objeto);
         var json = JSON.parse(respuesta);*/
 
-        parametrosTemplado.angr = angr;
-        parametrosTemplado.avcr = avcr;
-        parametrosTemplado.fcr = fcr;
-        parametrosTemplado.dh2f = dh2f;
+        parametrosTemplado.angr = Number(angr);
+        parametrosTemplado.avcr = Number(avcr);
+        parametrosTemplado.fcr = Number(fcr);
+        parametrosTemplado.dh2f = Number(dh2f);
 
         resultadoTempladoCambioTemperatura();
 
@@ -463,6 +466,8 @@ function corregirTemplado() {
         $("#corrige_botones").removeClass("hide");
         $("#corrige_angr").addClass("hide");
         $("#corregir_accion").addClass("hide");
+
+        guardarSesion();
     }
 }
 
@@ -860,5 +865,24 @@ function setFormularioTunel() {
 }
 
 function setFormularioTemplado() {
+    $("#cest").val(parametrosTemplado.ce);
+    $("#ap1").val(parametrosTemplado.hp1);
+    $("#ap2").val(parametrosTemplado.hp2);
+    $("#act1").val(parametrosTemplado.aht1);
+    $("#dht1").val(parametrosTemplado.dht1);
+    $("#avt1").val(parametrosTemplado.avt1);
+    $("#aht2").val(parametrosTemplado.aht2);
+    $("#dht2").val(parametrosTemplado.dht2);
+    $("#avt2").val(parametrosTemplado.avt2);
+    $("#vt").val(parametrosTemplado.vt);
+
+    $("#temperaturaInicio").val(parametrosTemplado.aw);
+    $("#temperaturaTermino").val(parametrosTemplado.ax);
+    $("#flechaInicio").val(parametrosTemplado.bc);
+    $("#flechaTermino").val(parametrosTemplado.bd);
+    $("#temperaturaReal").val(parametrosTemplado.ba);
+    $("#creep").val(parametrosTemplado.crp);
+    $("#angr").val(parametrosTemplado.angr);
+
 
 }
