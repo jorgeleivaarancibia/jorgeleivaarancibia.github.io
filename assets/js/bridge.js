@@ -656,7 +656,7 @@ function resultadoGamaTemplado() {
     var gama = parametrosTemplado.aht2 - parametrosTemplado.aht1;
     var gamaRadian = convertirCentesimalASexagesimalRadian(gama);
     var grados = Math.cos(gamaRadian);
-    var vano = Math.sqrt(Math.pow(parametrosTemplado.dht1, 2) + Math.pow(parametrosTemplado.dht2, 2) - (2*parametrosTemplado.dht2*parametrosTemplado.dht2*grados));
+    var vano = Math.sqrt(Math.pow(parametrosTemplado.dht1, 2) + Math.pow(parametrosTemplado.dht2, 2) - (2*parametrosTemplado.dht1*parametrosTemplado.dht2*grados));
     parametrosTemplado.gama = gama;
     parametrosTemplado.vano = vano;
 
